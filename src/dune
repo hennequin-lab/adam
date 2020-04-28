@@ -1,0 +1,4 @@
+(library
+ (name adam)
+ (public_name adam)
+ (libraries stdio base owl))
