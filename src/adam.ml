@@ -28,7 +28,7 @@ let min
     | Some alpha ->
       fun x g ->
         let cost = f_df x g in
-        let g_norm = Maths.sqrt (Mat.l2norm_sqr' g) in
+        let g_norm = Mat.l2norm' g in
         if Float.(g_norm > alpha)
         then (
           Stdio.printf "CLIPPING GRADIENT\n%!";
