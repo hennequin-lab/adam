@@ -6,7 +6,7 @@ open Owl
     @param beta1 (default=0.9)
     @param beta2 (default=0.999) *)
 val min
-  :  ?eta:float
+  :  ?eta:[ `constant of float | `of_iter of (int -> float) ]
   -> ?epsilon:float
   -> ?beta1:float
   -> ?beta2:float

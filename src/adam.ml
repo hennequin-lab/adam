@@ -2,7 +2,7 @@ open Base
 open Owl
 
 let min
-    ?(eta = 0.001)
+    ?(eta = `constant 0.001)
     ?(epsilon = 1E-8)
     ?(beta1 = 0.9)
     ?(beta2 = 0.999)
@@ -40,6 +40,7 @@ let min
     Owl_cblas_basic.axpy n alpha x 1 y 1
   in
   let rec iterate t cost beta1_t beta2_t =
+    let eta = match eta with `constant eta -> eta | `of_iter f -> f t in
     Mat.sqr_ ~out:g2 g;
     (* update m *)
     Mat.mul_scalar_ ~out:m m beta1;
