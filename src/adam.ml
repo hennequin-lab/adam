@@ -40,7 +40,11 @@ let min
     Owl_cblas_basic.axpy n alpha x 1 y 1
   in
   let rec iterate t cost beta1_t beta2_t =
-    let eta = match eta with `constant eta -> eta | `of_iter f -> f t in
+    let eta =
+      match eta with
+      | `constant eta -> eta
+      | `of_iter f -> f t
+    in
     Mat.sqr_ ~out:g2 g;
     (* update m *)
     Mat.mul_scalar_ ~out:m m beta1;
@@ -78,3 +82,6 @@ let min
     else cost
   in
   iterate 1 (f_df x g) beta1 beta2
+
+
+module Sgd = Sgd
