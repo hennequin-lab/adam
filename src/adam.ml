@@ -24,8 +24,8 @@ let min
     match clip with
     | None -> f_df
     | Some alpha ->
-      fun x g ->
-        let cost = f_df x g in
+      fun t x g ->
+        let cost = f_df t x g in
         let g_norm = Mat.l2norm' g in
         if Float.(g_norm > alpha)
         then (
@@ -77,11 +77,11 @@ let min
       done);
     if not (stop t cost)
     then (
-      let cost = f_df x g in
+      let cost = f_df t x g in
       iterate (t + 1) cost Float.(beta1 * beta1_t) Float.(beta2 * beta2_t))
     else cost
   in
-  iterate 1 (f_df x g) beta1 beta2
+  iterate 1 (f_df 1 x g) beta1 beta2
 
 
 module Sgd = Sgd

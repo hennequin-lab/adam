@@ -14,7 +14,7 @@ val min
   -> ?ub:Mat.mat
   -> ?clip:float
   -> stop:(int -> 'a -> bool)
-  -> (Mat.mat -> Mat.mat -> 'a)
+  -> (int -> Mat.mat -> Mat.mat -> 'a)
   -> Mat.mat
   -> 'a
 
